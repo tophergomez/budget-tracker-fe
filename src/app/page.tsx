@@ -1,10 +1,23 @@
-export default function Home() {
+'use client'
+
+import { JSX, useState } from "react";
+import React from "react";
+import Options from "./components/Options";
+
+export default function index() {
+  const [components, setComponents] = useState<JSX.Element[] | string[]>([])
+  
+  
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">        
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-      </footer>
+    <div className="grid grid-cols-5 w-[100%] h-[100vh] items-start gap-1 justify-items-start min-h-screen">
+      <Options 
+        setComponents={setComponents}>
+      </Options>
+      <div className="grid place-items-start col-span-2 w-full p-5 gap-2">
+         {components.map((component, index) => (
+          <React.Fragment key={index}>{component}</React.Fragment> 
+         ))}
+      </div>
     </div>
   );
 }
